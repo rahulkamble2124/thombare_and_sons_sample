@@ -1,0 +1,81 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Thombare & Son's Vision - Try-On & Book</title>
+    <script src="https://cdn.jsdelivr.net/npm/mind-ar@1.2.5/dist/mindar-face-aframe.prod.js"></script>
+    <style>
+        :root { --primary: #004a99; --secondary: #ff5722; }
+        body { font-family: 'Helvetica Neue', sans-serif; margin: 0; color: #333; }
+        .nav { display: flex; justify-content: space-around; background: white; padding: 15px; box-shadow: 0 2px 5px rgba(0,0,0,0.1); position: sticky; top: 0; z-index: 100; }
+        .nav a { text-decoration: none; color: var(--primary); font-weight: bold; }
+        
+        /* Try-On Section */
+        #vto-container { height: 400px; background: #000; position: relative; overflow: hidden; border-radius: 15px; margin: 20px; }
+        .vto-overlay { position: absolute; bottom: 10px; left: 50%; transform: translateX(-50%); z-index: 10; }
+        
+        .product-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(250px, 1fr)); gap: 20px; padding: 20px; }
+        .card { border: 1px solid #ddd; padding: 15px; border-radius: 10px; text-align: center; transition: 0.3s; }
+        .card:hover { transform: translateY(-5px); box-shadow: 0 5px 15px rgba(0,0,0,0.1); }
+        .price { color: var(--secondary); font-size: 1.2rem; font-weight: bold; }
+        .btn { background: var(--primary); color: white; padding: 10px 20px; border: none; border-radius: 5px; cursor: pointer; text-decoration: none; display: inline-block; }
+        .btn-booking { background: #28a745; margin-top: 50px; padding: 20px; font-size: 1.2rem; }
+    </style>
+</head>
+<body>
+
+<div class="nav">
+    <a href="#vto">Virtual Try-On</a>
+    <a href="#shop">Shop Frames</a>
+    <a href="#book">Book Appointment</a>
+</div>
+
+<section id="vto" style="text-align: center; padding: 40px 20px;">
+    <h2>AI Virtual Try-On</h2>
+    <p>See how you look in our top-selling frames!</p>
+    <div id="vto-container">
+        <a-scene mindar-face embedded color-space="sRGB" renderer="colorManagement: true, physicallyCorrectLights" vr-mode-ui="enabled: false" device-orientation-permission-ui="enabled: false">
+            <a-assets>
+                <a-asset-item id="glassesModel" src="https://cdn.jsdelivr.net/gh/hiukim/mind-ar-js@1.2.5/examples/face-tracking/assets/glasses/scene.gltf"></a-asset-item>
+            </a-assets>
+            <a-camera active="false" position="0 0 0"></a-camera>
+            <a-entity mindar-face-target="anchorIndex: 168">
+                <a-gltf-model rotation="0 0 0" pos="0 0 0" scale="0.1 0.1 0.1" src="#glassesModel"></a-gltf-model>
+            </a-entity>
+        </a-scene>
+    </div>
+</section>
+
+<section id="shop" class="container">
+    <h2 style="text-align: center;">Featured Frames</h2>
+    <div class="product-grid">
+        <div class="card">
+            <img src="https://via.placeholder.com/150" alt="Frame 1" style="width:100%">
+            <h3>Classic Aviators</h3>
+            <p class="price">₹1,299</p>
+            <a href="https://wa.me/91XXXXXXXXXX?text=I%20want%20to%20buy%20Classic%20Aviators" class="btn">Buy via WhatsApp</a>
+        </div>
+        <div class="card">
+            <img src="https://via.placeholder.com/150" alt="Frame 2" style="width:100%">
+            <h3>Modern Rectangular</h3>
+            <p class="price">₹999</p>
+            <a href="https://wa.me/91XXXXXXXXXX?text=I%20want%20to%20buy%20Modern%20Rectangular" class="btn">Buy via WhatsApp</a>
+        </div>
+    </div>
+</section>
+
+<section id="book" style="text-align: center; padding: 60px 20px; background: #f9f9f9;">
+    <h2>Schedule an Eye Check-up</h2>
+    <p>Choose a time that works for you. No waiting required.</p>
+    
+    <div class="calendly-inline-widget" data-url="https://calendly.com/YOUR_LINK" style="min-width:320px;height:700px;"></div>
+    <script type="text/javascript" src="https://assets.calendly.com/assets/external/widget.js" async></script>
+</section>
+
+<footer>
+    <p style="text-align:center; padding: 20px;">© 2026 Thombare & Son’s Vision Care Center</p>
+</footer>
+
+</body>
+</html>
